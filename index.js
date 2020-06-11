@@ -7,11 +7,14 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
 function createMenuItem(name, cost, category){
-  this.name=name;
-  this.cost=cost;
-  this.category=category;
+
+  return {name,cost,category};
+    // this.name=name;
+  // this.cost=cost;
+  // this.category=category;
 }
 
+// console.log(createMenuItem('sushi',5,'Lunch'))
 
 
 
@@ -20,6 +23,9 @@ function createMenuItem(name, cost, category){
 const sushi = new createMenuItem('sushi',5,'Lunch');
 const coke = new createMenuItem('coke',3,'Drinks')
 const steak = new createMenuItem('ribeye',14,'Dinner')
+createMenuItem('sushi',5,'Lunch')
+createMenuItem('coke',3,'Drinks')
+createMenuItem('ribeye',14,'Dinner')
 
 
 
@@ -43,7 +49,8 @@ burger.giveDiscount=function(type){
     return (burger.price)*0.9;
   }
 }
-// console.log(burger.giveDiscount('teacher'));
+
+console.log(burger.giveDiscount('teacher'));
 ///////////////Reviews (MVP)///////////////////
 
 const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and wonderful vegan options!"},

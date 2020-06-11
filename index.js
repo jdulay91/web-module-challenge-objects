@@ -132,7 +132,7 @@ function getLastReview(arr) {
   function getReviewByRating(arr,rating){
     let newArr=[];
     for(let i = 0; i<arr.length; i++){
-      if(arr[i].rating===rating){
+      if(Math.floor(arr[i].rating)===rating){
         newArr.push(arr[i]);        
       }
     }return newArr;

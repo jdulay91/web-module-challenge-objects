@@ -9,7 +9,8 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 function createMenuItem(name, cost, category){
 
   return {name,cost,category};
-    // this.name=name;
+  //constructor way to do things
+   // this.name=name;
   // this.cost=cost;
   // this.category=category;
 }
@@ -50,7 +51,7 @@ burger.giveDiscount=function(type){
   }
 }
 
-console.log(burger.giveDiscount('teacher'));
+// console.log(burger.giveDiscount('teacher'));
 ///////////////Reviews (MVP)///////////////////
 
 const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and wonderful vegan options!"},
@@ -121,10 +122,22 @@ function getLastReview(arr) {
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+//  function getReviewByRating(arr,rating) {
+//     for(element of arr){
+//       if(element.rating === rating){
+//         return arr[element]
+//       }
+//     }
+//   }
+  function getReviewByRating(arr,rating){
+    let newArr=[];
+    for(let i = 0; i<arr.length; i++){
+      if(arr[i].rating===rating){
+        newArr.push(arr[i]);        
+      }
+    }return newArr;
   }
-
+// console.log(getReviewByRating(reviews,4))
   
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words. 
   
@@ -139,7 +152,7 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-  function getLongReviews(/* code here */) {
+  function getLongReviews(arr) {
     /* code here */
   }
   

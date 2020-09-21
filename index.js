@@ -7,14 +7,33 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
 function createMenuItem(name, cost, category){
-    /* Code here */
+
+  return {name,cost,category};
+  //constructor way to do things
+   // this.name=name;
+  // this.cost=cost;
+  // this.category=category;
 }
 
+// console.log(createMenuItem('sushi',5,'Lunch'))
+
+
+
+
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
+const sushi = new createMenuItem('sushi',5,'Lunch');
+const coke = new createMenuItem('coke',3,'Drinks')
+const steak = new createMenuItem('ribeye',14,'Dinner')
+createMenuItem('sushi',5,'Lunch')
+createMenuItem('coke',3,'Drinks')
+createMenuItem('ribeye',14,'Dinner')
 
 
 
-/* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates price given a string as a parameter. 
+
+/* Task 2: You're having a lunch special! 25% off for teachers and students,
+ 10% off for everyone else. 
+ Add a method to your burger object that automatically calculates price given a string as a parameter. 
 
 Your method should accept: 
 
@@ -24,8 +43,15 @@ and should return a number.
 
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
+burger.giveDiscount=function(type){
+  if(type.toLowerCase()==='teacher' || type.toLowerCase()==='students'){
+    return (burger.price)*0.75;
+  }else{
+    return (burger.price)*0.9;
+  }
+}
 
-
+// console.log(burger.giveDiscount('teacher'));
 ///////////////Reviews (MVP)///////////////////
 
 const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and wonderful vegan options!"},
@@ -39,14 +65,17 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
 ]
 
 /* Task 4: Console.log just Julius' feedback */
-
-
+  console.log((reviews[5].feedback));
 /* Task 5: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
+// ;
 
+reviews.push({name:"Julliann",rating:3,feedback:"I asked for the ribeye they gave me the lobster! the only reason i gave it 3 stars is my friend works here."})
 
-/* Task 6: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
+// Task 6: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays"
 
-/*  Task 7: Write a function to return a review based on the index of the review in the array.
+ /*Task 7: Write a function to return a review based on the index of the review in the array.
+
 
  Your function should take two arguments:
 
@@ -59,21 +88,23 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
 function getReviewByIndex(reviews, index) {
-    /* code here */
+    
+    console.log(`${reviews[index].name} gave the restaurant a ${reviews[index].rating} star review, and their feedback was : ${reviews[index].feedback}`);
   }
-  
+
+ 
 
 /* Task 8: Write a function to get information about the most recent review called `getLastReview`
 
 getLastReview should accept:
   (1) an array of objects 
   
-and should return a string in the format `name} gave the restaurant a {rating}, and their feedback was: {feedback}`
+and should return a string in the format `{name} gave the restaurant a {rating}, and their feedback was: {feedback}`
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
-function getLastReview(/* code here */) {
-    /* code here */
+function getLastReview(arr) {
+    console.log(`${arr[arr.length-1].name} gave the restaurant a ${arr[arr.length-1].rating} star review, and their feedback was : ${arr[arr.length-1].feedback}`)
   } 
 
 
@@ -91,10 +122,22 @@ function getLastReview(/* code here */) {
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+//  function getReviewByRating(arr,rating) {
+//     for(element of arr){
+//       if(element.rating === rating){
+//         return arr[element]
+//       }
+//     }
+//   }
+  function getReviewByRating(arr,rating){
+    let newArr=[];
+    for(let i = 0; i<arr.length; i++){
+      if(Math.floor(arr[i].rating)===rating){
+        newArr.push(arr[i]);        
+      }
+    }return newArr;
   }
-
+// console.log(getReviewByRating(reviews,4))
   
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words. 
   
@@ -109,10 +152,16 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-  function getLongReviews(/* code here */) {
-    /* code here */
-  }
-  
+function getLongReviews(reviews) {
+  let newArr=[];
+   for(i=0; i<reviews.length;i++){
+     if(reviews[i].feedback.split(" ").length > 15){
+       newArr.push(reviews[i]);        
+     }      
+   }
+   return newArr; 
+ }
+ 
 
 /* STRETCH 3:  This challenge is not related to the data above! 
 
@@ -132,7 +181,18 @@ The returned object should have the following characteristics:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(odometer) {
+  this.odometer=odometer;
+  this.drive=function(distance){
+    this.odometer=odometer+distance
+  }
+  // return{odometer};
 }
+
+const car= new carMaker(1);
+console.log(car);
+car.drive(10);
+console.log(car);
+
+// carMaker(2);
+// console.log(carMaker(1))
